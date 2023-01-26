@@ -25,6 +25,7 @@ public class PlaceZone : MonoBehaviour
     {
         if (col.CompareTag("Placeable") && !_objectPlaced)
         {
+            col.transform.parent = transform;
             _shadowLadderKeep.SetActive(true);
             col.gameObject.GetComponent<Ladder>().TargetHit(transform.position, () =>
             {

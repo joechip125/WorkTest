@@ -10,8 +10,7 @@ public class SplineReader : MonoBehaviour
     private void Awake()
     {
         _spline = GetComponentInChildren<Spline>();
-        if(_spline == null)
-            Debug.Log("shit found");
+      
         var counter = 0.0f;
         for (int i = 0; i < 10; i++)
         {
