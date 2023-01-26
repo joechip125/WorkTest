@@ -11,14 +11,16 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
     private Vector3 _placePoint;
     private Action _theCallback;
     private Transform _zoneTransform;
-    private Guid _guid;
+    private RectTransform _rectTransform;
+    private CanvasGroup _canvasGroup;
     
     public bool canPlace;
     void Start()
     {
+        _canvasGroup = GetComponent<CanvasGroup>();
+        _rectTransform = GetComponent<RectTransform>();
         _startingPoint = transform.position;
         _startingScale = transform.localScale;
-        _guid = new Guid();
     }
 
     
@@ -29,7 +31,8 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        
+        _canvasGroup.blocksRaycasts = false;
+        _canvasGroup.alpha = 0.5f;
     }
 
     public void TargetHit(Vector3 placePos, Action callBack)
@@ -57,7 +60,8 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
             _theCallback?.Invoke();
             canPlace = false;
         }
-        
+        _canvasGroup.blocksRaycasts = true;
+        _canvasGroup.alpha = 1f;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -73,15 +77,18 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
     {
         if (col.CompareTag("PlaceZone"))
         {
-            col.GetComponent<PlaceZone>().ZoneChange(false);
-            canPlace = false;
+            //col.GetComponent<PlaceZone>().ZoneChange(false);
+            //canPlace = false;
         }
     }
     
 
     public void OnDrag(PointerEventData eventData)
     {
+        _rectTransform.anchoredPosition = eventData.delta;
         var aPos = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
-        transform.position = aPos + new Vector3(0,0,9.7f);
+        var placePos = new Vector3(aPos.x, aPos.y, -0.11f);
+        transform.position = placePos;
     }
+    
 }
