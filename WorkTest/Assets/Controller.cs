@@ -9,6 +9,7 @@ public class Controller : MonoBehaviour
     [SerializeField]private List<AvatarMovement> moveObjects = new();
     [SerializeField] private List<PlaceZone> placedLadders = new();
     [SerializeField] private Interact_Arrow arrow;
+    [SerializeField] private EndZone endZone;
 
     public Action OnMove;
     private int _numberPlaced;
@@ -20,6 +21,8 @@ public class Controller : MonoBehaviour
         {
             p.PlaceCallback += LadderCount;
         }
+
+        endZone.OnAvatarEnter += MoveGround;
     }
 
     private void OnApplicationQuit()
@@ -33,7 +36,6 @@ public class Controller : MonoBehaviour
     private void LadderCount(int plusOrMinus)
     {
         _numberPlaced += plusOrMinus;
-        Debug.Log(_numberPlaced);
 
         arrow.laddersPlaced = _numberPlaced == placedLadders.Count;
     }
@@ -54,9 +56,4 @@ public class Controller : MonoBehaviour
         }
     }
     
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

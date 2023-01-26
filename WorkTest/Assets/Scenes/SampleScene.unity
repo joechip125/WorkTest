@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &197772953 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2560591254004918862, guid: 10bb8a2d0d6e2cb4280b20d723223888, type: 3}
+  m_PrefabInstance: {fileID: 4503182210341245574}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f71ff286be3da243ad952db684c24f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &312953581
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,7 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd05f522046d6984796271d62a43e22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLadder: {fileID: 7076509772873725240, guid: c1ef33e03a93f0442b4180112c928d9d, type: 3}
   displayLadder: {fileID: 7076509772873725240, guid: c1ef33e03a93f0442b4180112c928d9d, type: 3}
 --- !u!61 &1239964277
 BoxCollider2D:
@@ -701,6 +711,7 @@ MonoBehaviour:
   Follower: {fileID: 1824947347}
   DurationInSecond: 5
   moveOnPath: 0
+  finishedWalking: 0
 --- !u!1001 &1536146576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -884,7 +895,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd05f522046d6984796271d62a43e22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnLadder: {fileID: 7076509772873725240, guid: c1ef33e03a93f0442b4180112c928d9d, type: 3}
   displayLadder: {fileID: 7076509772873725240, guid: c1ef33e03a93f0442b4180112c928d9d, type: 3}
 --- !u!61 &1792386770
 BoxCollider2D:
@@ -973,6 +983,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 621986122496706553, guid: c326de36b922b694da1ed489e4895c96, type: 3}
       propertyPath: m_Name
+      value: Avatar
+      objectReference: {fileID: 0}
+    - target: {fileID: 621986122496706553, guid: c326de36b922b694da1ed489e4895c96, type: 3}
+      propertyPath: m_TagString
       value: Avatar
       objectReference: {fileID: 0}
     - target: {fileID: 621986122496706554, guid: c326de36b922b694da1ed489e4895c96, type: 3}
@@ -1120,6 +1134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2489464375732266195, guid: 10bb8a2d0d6e2cb4280b20d723223888, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5111074745383506375, guid: 10bb8a2d0d6e2cb4280b20d723223888, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -1185,6 +1203,10 @@ PrefabInstance:
       propertyPath: arrow
       value: 
       objectReference: {fileID: 1946648719}
+    - target: {fileID: 4924675757925976541, guid: 03ec47f655066934b8a6fe488fa1aac0, type: 3}
+      propertyPath: endZone
+      value: 
+      objectReference: {fileID: 197772953}
     - target: {fileID: 4924675757925976541, guid: 03ec47f655066934b8a6fe488fa1aac0, type: 3}
       propertyPath: placedLadders.Array.size
       value: 2
