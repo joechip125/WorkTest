@@ -2,25 +2,47 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Interact_Arrow : MonoBehaviour
+public class Interact_Arrow : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     private bool _startedMovement;
     public bool laddersPlaced;
-    private AvatarMovement _avatarMovement;
+
+    public AvatarMovement moveObject;
 
     private void Awake()
     {
-       _avatarMovement = FindObjectOfType<AvatarMovement>();
     }
+    
     
     private void OnMouseDown()
     {
         if (!_startedMovement)
         {
-            _avatarMovement.shouldMove = true;
-            _avatarMovement.MoveDirection = MoveDirection.Forward;
+            moveObject.shouldMove = true;
+            moveObject.MoveDirection = MoveDirection.Forward;
             _startedMovement = true;
         }
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+       
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        
     }
 }

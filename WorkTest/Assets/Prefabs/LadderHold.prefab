@@ -124,3 +124,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd05f522046d6984796271d62a43e22b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnLadder: {fileID: 7076509772873725240, guid: c1ef33e03a93f0442b4180112c928d9d, type: 3}
+  displayLadder: {fileID: 7076509772873725240, guid: c1ef33e03a93f0442b4180112c928d9d, type: 3}
