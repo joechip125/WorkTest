@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Placeable
   - Avatar
+  - PlaceZone
   layers:
   - Default
   - TransparentFX

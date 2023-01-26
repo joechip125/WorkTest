@@ -11,6 +11,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private Interact_Arrow arrow;
     [SerializeField] private EndZone endZone;
     [SerializeField] private WalkPath secondPath;
+    private Dictionary<Guid, bool> _ladders = new();
 
     public Action OnMove;
     private int _numberPlaced;
@@ -20,7 +21,10 @@ public class Controller : MonoBehaviour
         OnMove += MoveGround;
         foreach (var p in placedLadders)
         {
+            var gu = Guid.NewGuid();
             p.PlaceCallback += LadderCount;
+            p.Guid = gu;
+            _ladders.Add(gu, false);
         }
 
         moveObjects[0].FinishedMoving += MoveAvatar;
@@ -29,7 +33,6 @@ public class Controller : MonoBehaviour
 
     private void MoveAvatar()
     {
-        Debug.Log("last move");
         secondPath.moveOnPath = true;
     }
     
@@ -44,12 +47,10 @@ public class Controller : MonoBehaviour
         endZone.OnAvatarEnter -= MoveGround;
     }
 
-    private void LadderCount(int plusOrMinus)
+    private void LadderCount(Guid guid, bool state)
     {
-        _numberPlaced += plusOrMinus;
-        Debug.Log(_numberPlaced);
-
-        arrow.laddersPlaced = _numberPlaced == placedLadders.Count;
+        _ladders[guid] = state;
+        arrow.laddersPlaced = !_ladders.ContainsValue(false);
     }
     
     private void OnDisable()

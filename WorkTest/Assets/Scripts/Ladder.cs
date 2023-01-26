@@ -10,12 +10,15 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
     private Vector3 _startingScale;
     private Vector3 _placePoint;
     private Action _theCallback;
+    private Transform _zoneTransform;
+    private Guid _guid;
     
     public bool canPlace;
     void Start()
     {
         _startingPoint = transform.position;
         _startingScale = transform.localScale;
+        _guid = new Guid();
     }
 
     
@@ -56,6 +59,25 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
         }
         
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("PlaceZone"))
+        {
+            _zoneTransform = col.GetComponent<PlaceZone>().ZoneChange(true);
+            _placePoint = _zoneTransform.position;
+            canPlace = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.CompareTag("PlaceZone"))
+        {
+            col.GetComponent<PlaceZone>().ZoneChange(false);
+            canPlace = false;
+        }
+    }
+    
 
     public void OnDrag(PointerEventData eventData)
     {
