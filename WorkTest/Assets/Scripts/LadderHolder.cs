@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class LadderHolder : MonoBehaviour
 {
-    [SerializeField] private GameObject spawnLadder;
     [SerializeField] private GameObject displayLadder;
 
     private void Awake()
@@ -15,21 +14,5 @@ public class LadderHolder : MonoBehaviour
             transform.position + new Vector3(0, 0, -0.01f), 
             quaternion.identity);
         temp.transform.localScale = new Vector3(0.4f, 0.4f);
-    }
-
-    void Start()
-    {
-        
-    }
-
-    private void OnMouseDown()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
