@@ -8,6 +8,9 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
 {
     private Vector3 _startingPoint;
     private Vector3 _startingScale;
+    private Vector3 _placePoint;
+    private Action _theCallback;
+    
     public bool canPlace;
     void Start()
     {
@@ -26,6 +29,18 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
         
     }
 
+    public void TargetHit(Vector3 placePos, Action callBack)
+    {
+        _placePoint = placePos;
+        _theCallback = callBack;
+        canPlace = true;
+    }
+
+    public void TargetLost()
+    {
+        canPlace = false;
+    }
+    
     public void OnEndDrag(PointerEventData eventData)
     {
         if (!canPlace)
@@ -33,7 +48,12 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
             transform.position = _startingPoint;
             transform.localScale = _startingScale;
         }
-       
+        else
+        {
+            transform.position = _placePoint;
+            _theCallback?.Invoke();
+            canPlace = false;
+        }
         
     }
 

@@ -7,11 +7,17 @@ using UnityEngine;
 public class Controller : MonoBehaviour
 {
     [SerializeField]private List<AvatarMovement> moveObjects = new();
+    [SerializeField] private List<PlaceZone> placedLadders = new();
+    
     public Action OnMove; 
 
     void Start()
     {
         OnMove += MoveGround;
+        foreach (var p in placedLadders)
+        {
+            
+        }
     }
 
     private void OnDisable()

@@ -103,3 +103,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe91e833a2b8de46bef1c2d4c3d714e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shadowLadderProto: {fileID: 1546808162288758541, guid: eeefc83b713912a4e82284112049c983, type: 3}
