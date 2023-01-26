@@ -10,15 +10,25 @@ public class Interact_Arrow : MonoBehaviour
     public bool laddersPlaced;
 
     public AvatarMovement moveObject;
-    
-    
+    [SerializeField] private WalkPath path;
+    private AudioSource _error;
+
+    private void Awake()
+    {
+        _error = GetComponent<AudioSource>();
+        
+    }
+
     private void OnMouseDown()
     {
         if (!_startedMovement && laddersPlaced)
         {
-            moveObject.shouldMove = true;
-            moveObject.MoveDirection = MoveDirection.Forward;
             _startedMovement = true;
+            path.moveOnPath = true;
+        }
+        else if(!_startedMovement && !laddersPlaced)
+        {
+            _error.Play();
         }
     }
     

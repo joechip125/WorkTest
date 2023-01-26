@@ -33,6 +33,7 @@ public class Controller : MonoBehaviour
     private void LadderCount(int plusOrMinus)
     {
         _numberPlaced += plusOrMinus;
+        Debug.Log(_numberPlaced);
 
         arrow.laddersPlaced = _numberPlaced == placedLadders.Count;
     }
