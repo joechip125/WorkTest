@@ -178,10 +178,12 @@ namespace SplineMesh {
         /// <param name="d"></param>
         /// <returns></returns>
         public CurveSample GetSampleAtDistance(float d) {
+            Debug.Log(samples.Count);
             if (d < 0 || d > Length)
                 throw new ArgumentException("Distance must be positive and less than curve length. Length = " + Length + ", given distance was " + d);
 
             CurveSample previous = samples[0];
+            
             CurveSample next = default(CurveSample);
             bool found = false;
             foreach (CurveSample cp in samples) {

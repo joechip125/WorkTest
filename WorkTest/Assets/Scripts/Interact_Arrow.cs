@@ -6,18 +6,21 @@ using UnityEngine;
 public class Interact_Arrow : MonoBehaviour
 {
     private bool _startedMovement;
-    void Start()
-    {
-        
-    }
+    public bool laddersPlaced;
+    private AvatarMovement _avatarMovement;
 
+    private void Awake()
+    {
+       _avatarMovement = FindObjectOfType<AvatarMovement>();
+    }
+    
     private void OnMouseDown()
     {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!_startedMovement)
+        {
+            _avatarMovement.shouldMove = true;
+            _avatarMovement.MoveDirection = MoveDirection.Forward;
+            _startedMovement = true;
+        }
     }
 }

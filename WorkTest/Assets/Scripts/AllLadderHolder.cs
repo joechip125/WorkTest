@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,46 +11,41 @@ public class AllLadderHolder : MonoBehaviour
     [SerializeField, Range(0, 7)] private int numberLadders;
     [SerializeField, Range(0, 3)] private float gapDistance;
     private float _currentGapDistance;
-    private int _currentLadders;
+    [SerializeField]private int currentLadders;
     [HideInInspector] private List<GameObject> _ladderList = new();
 
     private void UpdateLadders()
     {
+        if (Application.isPlaying) return;
+        
         var prevLoc = Vector3.zero;
-        if (numberLadders > _currentLadders)
+        if (numberLadders > currentLadders)
         {
-            for (int i = _currentLadders; i < numberLadders; i++)
-            {
-                prevLoc = _ladderList.Count > 0 ? 
-                    _ladderList[^1].transform.position : transform.position;
+            prevLoc = _ladderList.Count > 0 ? 
+                _ladderList[^1].transform.position : transform.position;
                 
-                var temp = Instantiate(ladderHolder, 
-                    prevLoc + new Vector3(0,-gapDistance,0), 
-                    quaternion.identity, transform);
-                _ladderList.Add(temp);
-                _currentLadders++;
-            }
+            var temp = Instantiate(ladderHolder, 
+                prevLoc + new Vector3(0,-gapDistance,0), 
+                quaternion.identity, transform);
+            _ladderList.Add(temp);
+            currentLadders++;
         }
-        else if (numberLadders < _currentLadders)
+        else if (numberLadders < currentLadders)
         {
             DestroyImmediate(_ladderList[^1].gameObject);
             _ladderList.RemoveAt(_ladderList.Count -1);
-            _currentLadders--;
+            currentLadders--;
         }
-        
+
+        currentLadders = numberLadders;
     }
 
    
     void Update()
     {
-        if (numberLadders != _currentLadders)
+        if (numberLadders != currentLadders && Application.isEditor)
         {
             UpdateLadders();
-        }
-
-        if (gapDistance != _currentGapDistance)
-        {
-            
         }
     }
 }
