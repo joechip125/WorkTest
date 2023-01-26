@@ -23,6 +23,7 @@ public class AvatarMovement : MonoBehaviour
     public Vector3 startPoint;
     private bool _arrivedAtPoint;
     private float _lerpTime = 0;
+    public Action FinishedMoving;
 
     public MoveDirection MoveDirection
     {
@@ -78,6 +79,12 @@ public class AvatarMovement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(startPoint, movePoint, _lerpTime);
             _lerpTime += Time.deltaTime * moveSpeed;
+
+            if (_lerpTime >= 0.99f)
+            {
+                _arrivedAtPoint = true;
+                FinishedMoving?.Invoke();
+            }
         }
     }
 }

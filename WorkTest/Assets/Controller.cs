@@ -10,6 +10,7 @@ public class Controller : MonoBehaviour
     [SerializeField] private List<PlaceZone> placedLadders = new();
     [SerializeField] private Interact_Arrow arrow;
     [SerializeField] private EndZone endZone;
+    [SerializeField] private WalkPath secondPath;
 
     public Action OnMove;
     private int _numberPlaced;
@@ -22,15 +23,25 @@ public class Controller : MonoBehaviour
             p.PlaceCallback += LadderCount;
         }
 
+        moveObjects[0].FinishedMoving += MoveAvatar;
         endZone.OnAvatarEnter += MoveGround;
     }
 
+    private void MoveAvatar()
+    {
+        Debug.Log("last move");
+        secondPath.moveOnPath = true;
+    }
+    
     private void OnApplicationQuit()
     {
         foreach (var p in placedLadders)
         {
             p.PlaceCallback -= LadderCount;
         }
+        
+        moveObjects[0].FinishedMoving -= MoveAvatar;
+        endZone.OnAvatarEnter -= MoveGround;
     }
 
     private void LadderCount(int plusOrMinus)

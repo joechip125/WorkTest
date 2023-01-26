@@ -14,6 +14,7 @@ public class WalkPath : MonoBehaviour
     public float DurationInSecond;
     public bool moveOnPath;
     public bool finishedWalking;
+    [SerializeField] private float finishPoint;
 
     private void OnEnable()
     {
@@ -34,11 +35,10 @@ public class WalkPath : MonoBehaviour
 
     private void PlaceFollower()
     {
-        
         CurveSample sample = spline.GetSample(rate);
         var worldPos = transform.TransformPoint(sample.location);
         Follower.transform.position = new Vector3(worldPos.x, worldPos.y, -1);
-        finishedWalking = rate > 10.93f;
+        finishedWalking = rate > finishPoint;
     }
     
    
