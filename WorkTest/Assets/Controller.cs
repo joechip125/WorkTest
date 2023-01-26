@@ -8,18 +8,35 @@ public class Controller : MonoBehaviour
 {
     [SerializeField]private List<AvatarMovement> moveObjects = new();
     [SerializeField] private List<PlaceZone> placedLadders = new();
-    
-    public Action OnMove; 
+    [SerializeField] private Interact_Arrow arrow;
+
+    public Action OnMove;
+    private int _numberPlaced;
 
     void Start()
     {
         OnMove += MoveGround;
         foreach (var p in placedLadders)
         {
-            
+            p.PlaceCallback += LadderCount;
         }
     }
 
+    private void OnApplicationQuit()
+    {
+        foreach (var p in placedLadders)
+        {
+            p.PlaceCallback -= LadderCount;
+        }
+    }
+
+    private void LadderCount(int plusOrMinus)
+    {
+        _numberPlaced += plusOrMinus;
+
+        arrow.laddersPlaced = _numberPlaced == placedLadders.Count;
+    }
+    
     private void OnDisable()
     {
         OnMove -= MoveGround;

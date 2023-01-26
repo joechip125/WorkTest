@@ -10,6 +10,7 @@ public class PlaceZone : MonoBehaviour
     public GameObject shadowLadderProto;
     private GameObject _shadowLadderKeep;
     private bool _objectPlaced;
+    public Action<int> PlaceCallback;
     
 
     private void Awake()
@@ -30,6 +31,7 @@ public class PlaceZone : MonoBehaviour
                 _shadowLadderKeep.SetActive(false);
             });
             _objectPlaced = true;
+            PlaceCallback?.Invoke(1);
         }
     }
 
@@ -40,6 +42,7 @@ public class PlaceZone : MonoBehaviour
             _shadowLadderKeep.SetActive(false);
             other.gameObject.GetComponent<Ladder>().TargetLost();
             _objectPlaced = false;
+            PlaceCallback?.Invoke(-1);
         }
     }
 }
