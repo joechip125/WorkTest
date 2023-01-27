@@ -15,8 +15,14 @@ public class EndZone : MonoBehaviour
         if (col.CompareTag("Avatar"))
         {
             if (_groundMoving) return;
-            OnAvatarEnter?.Invoke();
-            _groundMoving = true;
+            StartCoroutine(DelayMove());
         }
+    }
+
+    private IEnumerator DelayMove()
+    {
+        yield return new WaitForSeconds(1);
+        OnAvatarEnter?.Invoke();
+        _groundMoving = true;
     }
 }

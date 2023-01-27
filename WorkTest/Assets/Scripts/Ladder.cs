@@ -70,6 +70,7 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
         {
             _zoneTransform = col.GetComponent<PlaceZone>().ZoneChange(true);
             _placePoint = _zoneTransform.position;
+            transform.parent = _zoneTransform;
             canPlace = true;
         }
     }

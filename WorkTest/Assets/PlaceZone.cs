@@ -17,7 +17,9 @@ public class PlaceZone : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
-        _shadowLadderKeep = Instantiate(shadowLadderProto, transform.position, quaternion.identity);
+        _shadowLadderKeep = Instantiate(shadowLadderProto, 
+            transform.position, 
+            quaternion.identity, transform);
         _shadowLadderKeep.SetActive(false);
     }
     
@@ -31,7 +33,6 @@ public class PlaceZone : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("On drop");
         PlaceCallback?.Invoke(Guid, true);
     }
 }

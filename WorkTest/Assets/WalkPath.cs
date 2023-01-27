@@ -35,6 +35,7 @@ public class WalkPath : MonoBehaviour
 
     private void PlaceFollower()
     {
+        Debug.Log(rate);
         CurveSample sample = spline.GetSample(rate);
         var worldPos = transform.TransformPoint(sample.location);
         Follower.transform.position = new Vector3(worldPos.x, worldPos.y, -1);
