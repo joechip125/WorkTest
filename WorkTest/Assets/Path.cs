@@ -63,8 +63,6 @@ public class Path : MonoBehaviour
             return false;
         }
 
-        Debug.Log(_currentPoint);
-
         var parent = transform;
         thePoint = points[_currentPoint].transform.localPosition + transform.position;
         

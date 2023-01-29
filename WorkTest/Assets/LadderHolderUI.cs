@@ -12,6 +12,8 @@ public class LadderHolderUI : MonoBehaviour
     void Start()
     {
        _tilePositions = GetComponentsInChildren<RectTransform>().ToList();
+       var temp = Instantiate(ladderProto, transform.position, Quaternion.identity);
+       Debug.Log(_tilePositions[0].anchoredPosition);
     }
 
     // Update is called once per frame
