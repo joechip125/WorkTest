@@ -12,7 +12,6 @@ public class PlaceZone : MonoBehaviour, IDropHandler
     private GameObject _shadowLadderKeep;
     private bool _objectPlaced;
     private Ladder _aLadder;
-
     
     private void Awake()
     {
@@ -22,11 +21,6 @@ public class PlaceZone : MonoBehaviour, IDropHandler
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Avatar"))
-        {
-          //  col.GetComponent<AvatarMovement>().MoveDirection = MoveDirection.None;
-        }
-
         if (col.CompareTag("Placeable"))
         {
             _aLadder = col.GetComponent<Ladder>();

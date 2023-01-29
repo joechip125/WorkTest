@@ -42,8 +42,6 @@ GameObject:
   - component: {fileID: 761721688527010813}
   - component: {fileID: 5087974787106977387}
   - component: {fileID: 2494496864615515049}
-  - component: {fileID: 4100299106137348731}
-  - component: {fileID: 431201320090358102}
   m_Layer: 0
   m_Name: LadderPlaceZone
   m_TagString: PlaceZone
@@ -107,85 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveUpOrDown: 0
---- !u!114 &4100299106137348731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548516936222462249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a85c5879d519aa4ab2ebbf42591149a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nodes:
-  - position: {x: -0.56060386, y: -0.46471322, z: 0}
-    direction: {x: -0.56060386, y: -0.46471322, z: -3}
-    up: {x: 0, y: 1, z: 0}
-    scale: {x: 1, y: 1}
-    roll: 0
-  - position: {x: -0.10181832, y: -0.46471322, z: -3}
-    direction: {x: -0.10181832, y: -0.46471322, z: -6}
-    up: {x: 0, y: 1, z: 0}
-    scale: {x: 1, y: 1}
-    roll: 0
-  - position: {x: 0.12602592, y: 0.99677885, z: 0}
-    direction: {x: 0.12602592, y: 0.99677885, z: 3}
-    up: {x: 0, y: 1, z: 0}
-    scale: {x: 1, y: 1}
-    roll: 0
-  curves:
-  - n1:
-      position: {x: -0.56060386, y: -0.46471322, z: 0}
-      direction: {x: -0.56060386, y: -0.46471322, z: -3}
-      up: {x: 0, y: 1, z: 0}
-      scale: {x: 1, y: 1}
-      roll: 0
-    n2:
-      position: {x: -0.10181832, y: -0.46471322, z: -3}
-      direction: {x: -0.10181832, y: -0.46471322, z: -6}
-      up: {x: 0, y: 1, z: 0}
-      scale: {x: 1, y: 1}
-      roll: 0
-    Changed:
-      m_PersistentCalls:
-        m_Calls: []
-  - n1:
-      position: {x: -0.10181832, y: -0.46471322, z: -3}
-      direction: {x: -0.10181832, y: -0.46471322, z: -6}
-      up: {x: 0, y: 1, z: 0}
-      scale: {x: 1, y: 1}
-      roll: 0
-    n2:
-      position: {x: 0.12602592, y: 0.99677885, z: 0}
-      direction: {x: 0.12602592, y: 0.99677885, z: 3}
-      up: {x: 0, y: 1, z: 0}
-      scale: {x: 1, y: 1}
-      roll: 0
-    Changed:
-      m_PersistentCalls:
-        m_Calls: []
-  Length: 9.050243
-  isLoop: 0
-  CurveChanged:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &431201320090358102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1548516936222462249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9ec9fb8aa77f1e408bbc812ffd975d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  durationInSecond: 0
-  moveOnPath: 0
-  finishedWalking: 0
 --- !u!1001 &6606643371846702339
 PrefabInstance:
   m_ObjectHideFlags: 0

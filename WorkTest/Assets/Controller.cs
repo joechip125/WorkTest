@@ -33,7 +33,6 @@ public class Controller : MonoBehaviour
         foreach (var movement in moveObjects)
         {
             movement.movePoint = movement.transform.position - new Vector3(12.3f, 0, 0);
-            //movement.movePoint = movement.transform.position - new Vector3(15.5f, 0, 0);
             movement.MoveDirection = MoveDirection.ToPoint;
         }
     }
