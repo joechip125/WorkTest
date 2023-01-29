@@ -17,6 +17,7 @@ public class PlaceZone : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
+        Get
         _shadowLadderKeep = Instantiate(shadowLadderProto, 
             transform.position, 
             quaternion.identity, transform);
