@@ -15,6 +15,7 @@ public class EndZone : MonoBehaviour
     {
         if (col.CompareTag("Avatar"))
         {
+            Debug.Log("arrived");
             col.GetComponent<AvatarMovement>().MoveDirection = MoveDirection.None;
             if (_groundMoving) return;
             StartCoroutine(DelayMove());

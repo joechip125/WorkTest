@@ -25,7 +25,7 @@ public class AvatarMovement : MonoBehaviour
     private bool _arrivedAtPoint;
     private float _lerpTime = 0;
     public Action FinishedMoving;
-    private WalkPoints _walkPoints;
+    private Path _walkPoints;
 
     public MoveDirection MoveDirection
     {
@@ -42,7 +42,8 @@ public class AvatarMovement : MonoBehaviour
     private void Awake()
     {
         startPoint = transform.position;
-        _walkPoints = FindObjectOfType<WalkPoints>();
+        _walkPoints = FindObjectOfType<Path>();
+        NextPoint();
     }
 
     private void NextPoint()
@@ -105,10 +106,10 @@ public class AvatarMovement : MonoBehaviour
         
         if (_shouldMove && _moveDirection == MoveDirection.ToPoints)
         {
-            transform.position = Vector3.MoveTowards(startPoint, movePoint, _lerpTime);
-            _lerpTime += Time.deltaTime * moveSpeed;
-
-            if (_lerpTime >= 0.99f)
+            var step =  moveSpeed * Time.deltaTime; 
+            transform.position = Vector3.MoveTowards(transform.position, movePoint, step);
+            
+            if (Vector3.Distance(transform.position, movePoint) < 0.001f)
             {
                 NextPoint();
             }

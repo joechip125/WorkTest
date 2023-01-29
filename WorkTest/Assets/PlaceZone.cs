@@ -24,7 +24,7 @@ public class PlaceZone : MonoBehaviour, IDropHandler
     {
         if (col.CompareTag("Avatar"))
         {
-            col.GetComponent<AvatarMovement>().MoveDirection = MoveDirection.None;
+          //  col.GetComponent<AvatarMovement>().MoveDirection = MoveDirection.None;
         }
 
         if (col.CompareTag("Placeable"))
