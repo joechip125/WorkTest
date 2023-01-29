@@ -8,7 +8,6 @@ using UnityEngine.EventSystems;
 
 public class PlaceZone : MonoBehaviour, IDropHandler
 {
-    public GameObject shadowLadderProto;
     private GameObject _shadowLadderKeep;
     private bool _objectPlaced;
     public Action<Guid, bool> PlaceCallback;
@@ -17,13 +16,21 @@ public class PlaceZone : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
-        Get
-        _shadowLadderKeep = Instantiate(shadowLadderProto, 
-            transform.position, 
-            quaternion.identity, transform);
+        _shadowLadderKeep = GetComponentInChildren<PreStartObject>().gameObject;
         _shadowLadderKeep.SetActive(false);
     }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Avatar"))
+        {
+            var move = col.GetComponent<AvatarMovement>().shouldMove = false;
+        }
+    }
     
+    
+    
+
     public Transform ZoneChange(bool comeOrGo)
     {
         _shadowLadderKeep.SetActive(comeOrGo);
