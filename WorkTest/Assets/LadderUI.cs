@@ -10,7 +10,8 @@ public class LadderUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup _canvasGroup;
     private Vector3 _startPos;
     private bool _ladderHeld;
-    
+
+    public bool ladderOnDropArea;
     public bool LadderHeld => _ladderHeld;
 
     private void Awake()

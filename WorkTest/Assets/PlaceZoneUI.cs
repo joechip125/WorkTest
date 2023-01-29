@@ -15,8 +15,8 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     private void Awake()
     {
         _shadowImage = GetComponentInChildren<Image>();
-       // _shadowImage.SetActive(false);
-       _sC = _shadowImage.color;
+        _sC = _shadowImage.color;
+       _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0);
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -37,21 +37,29 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("pointer enter");
-        _shadowImage.color = _sC + new Color(0, 0, 0, -255);
-//        _ladderUI =  eventData.pointerDrag.GetComponent<LadderUI>();
+        if (eventData.pointerDrag)
+        {
+            _ladderUI = eventData.pointerDrag.GetComponent<LadderUI>();
+            _ladderUI.ladderOnDropArea = true;
+        }
+        
         if (_ladderUI)
         {
             if (_ladderUI.LadderHeld && _canPlace)
             {
-                
+                _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0.5f);
             }
         }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("pointer exit");
-        _shadowImage.color = _sC + new Color(0, 0, 0, 255);
+        _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0);
+
+        if (_ladderUI)
+        {
+            _ladderUI.ladderOnDropArea = false;
+            _ladderUI = null;
+        }
     }
 }
