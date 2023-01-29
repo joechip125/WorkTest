@@ -27,11 +27,6 @@ public class LadderUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         _rectTransform.position = _startPos;
         _canvasGroup.blocksRaycasts = true;
     }
-
-    public void Placed()
-    {
-        _canvasGroup.blocksRaycasts = false;
-    }
     
     public void OnPointerDown(PointerEventData eventData)
     {
@@ -46,6 +41,11 @@ public class LadderUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if (!ladderOnDropArea)
+        {
+            ReturnToSender();
+        }
+        
         _ladderHeld = false;
     }
 
