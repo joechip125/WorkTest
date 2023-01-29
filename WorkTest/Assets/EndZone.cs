@@ -21,7 +21,7 @@ public class EndZone : MonoBehaviour
 
     private IEnumerator DelayMove()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.4f);
         OnAvatarEnter?.Invoke();
         _groundMoving = true;
     }

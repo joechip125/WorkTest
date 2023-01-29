@@ -11,8 +11,6 @@ public class Controller : MonoBehaviour
     [SerializeField] private Interact_Arrow arrow;
     [SerializeField] private EndZone endZone;
     [SerializeField] private WalkPath secondPath;
-    [SerializeField] private Transform secondArrowPos;
-    [SerializeField] private Transform secondLaddersPos;
     [SerializeField] private GameObject ladderHolder;
     private Dictionary<Guid, bool> _ladders = new();
 
@@ -37,8 +35,6 @@ public class Controller : MonoBehaviour
     private void MoveAvatar()
     {
         secondPath.moveOnPath = true;
-        arrow.transform.position = secondArrowPos.position;
-        ladderHolder.transform.position = secondLaddersPos.position;
     }
     
     private void OnApplicationQuit()
