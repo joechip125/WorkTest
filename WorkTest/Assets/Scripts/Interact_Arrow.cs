@@ -29,7 +29,7 @@ public class Interact_Arrow : MonoBehaviour
         else
         {
             _startedMovement = true;
-            moveObject.MoveDirection = MoveDirection.Forward;
+            moveObject.MoveDirection = MoveDirection.ToPoints;
         }
     }
 }

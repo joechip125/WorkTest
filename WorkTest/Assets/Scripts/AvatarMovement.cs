@@ -12,7 +12,8 @@ public enum MoveDirection
     Back,
     Up,
     Down,
-    ToPoint
+    ToPoint,
+    ToPoints
 }
 
 public class AvatarMovement : MonoBehaviour
@@ -24,6 +25,7 @@ public class AvatarMovement : MonoBehaviour
     private bool _arrivedAtPoint;
     private float _lerpTime = 0;
     public Action FinishedMoving;
+    private WalkPoints _walkPoints;
 
     public MoveDirection MoveDirection
     {
@@ -40,8 +42,23 @@ public class AvatarMovement : MonoBehaviour
     private void Awake()
     {
         startPoint = transform.position;
+        _walkPoints = FindObjectOfType<WalkPoints>();
     }
 
+    private void NextPoint()
+    {
+        startPoint = transform.position;
+        if (_walkPoints.GetNextPoint(out var point))
+        {
+            movePoint = point;
+            _lerpTime = 0;
+        }
+        else
+        {
+            MoveDirection = MoveDirection.None;
+        }
+    }
+    
     private void UpdateDirection()
     {
         if (_moveDirection == MoveDirection.None)
@@ -84,6 +101,17 @@ public class AvatarMovement : MonoBehaviour
             
             _arrivedAtPoint = true;
             FinishedMoving?.Invoke();
+        }
+        
+        if (_shouldMove && _moveDirection == MoveDirection.ToPoints)
+        {
+            transform.position = Vector3.MoveTowards(startPoint, movePoint, _lerpTime);
+            _lerpTime += Time.deltaTime * moveSpeed;
+
+            if (_lerpTime >= 0.99f)
+            {
+                NextPoint();
+            }
         }
     }
 }
