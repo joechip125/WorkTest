@@ -262,6 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3657028897856867552}
+  - component: {fileID: 2666161902860757582}
   m_Layer: 0
   m_Name: Holders
   m_TagString: Untagged
@@ -286,3 +287,16 @@ Transform:
   m_Father: {fileID: 1467299127220623037}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2666161902860757582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6344711305726259194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22d6e0f67c2606d42b06d75cbf2fec2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ladderProto: {fileID: 7076509772873725240, guid: c1ef33e03a93f0442b4180112c928d9d, type: 3}
