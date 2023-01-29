@@ -8,12 +8,14 @@ public class EndZone : MonoBehaviour
 {
     public Action OnAvatarEnter;
     private bool _groundMoving;
+    private Transform _theParent;
     
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Avatar"))
         {
+            col.GetComponent<AvatarMovement>().shouldMove = false;
             if (_groundMoving) return;
             StartCoroutine(DelayMove());
         }

@@ -12,7 +12,7 @@ public class LadderHolder : MonoBehaviour
     {
         var temp = Instantiate(displayLadder, 
             transform.position + new Vector3(0, 0, -0.01f), 
-            quaternion.identity);
+            quaternion.identity, transform);
         temp.transform.localScale = new Vector3(0.4f, 0.4f);
     }
 }

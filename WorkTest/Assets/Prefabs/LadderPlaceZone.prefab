@@ -42,9 +42,11 @@ GameObject:
   - component: {fileID: 761721688527010813}
   - component: {fileID: 5087974787106977387}
   - component: {fileID: 2494496864615515049}
+  - component: {fileID: 4100299106137348731}
+  - component: {fileID: 431201320090358102}
   m_Layer: 0
   m_Name: LadderPlaceZone
-  m_TagString: PreStartObject
+  m_TagString: PlaceZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +106,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe91e833a2b8de46bef1c2d4c3d714e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shadowLadderProto: {fileID: 1546808162288758541, guid: eeefc83b713912a4e82284112049c983, type: 3}
+  moveUpOrDown: 0
+--- !u!114 &4100299106137348731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548516936222462249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a85c5879d519aa4ab2ebbf42591149a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodes:
+  - position: {x: -0.17780733, y: -0.8604336, z: 0}
+    direction: {x: -0.17780733, y: -0.8604336, z: -3}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: 0.12602592, y: 0.99677885, z: 0}
+    direction: {x: 0.12602592, y: 0.99677885, z: 3}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  curves:
+  - n1:
+      position: {x: -0.17780733, y: -0.8604336, z: 0}
+      direction: {x: -0.17780733, y: -0.8604336, z: -3}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: 0.12602592, y: 0.99677885, z: 0}
+      direction: {x: 0.12602592, y: 0.99677885, z: 3}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  Length: 5.2560434
+  isLoop: 0
+  CurveChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &431201320090358102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548516936222462249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ec9fb8aa77f1e408bbc812ffd975d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Follower: {fileID: 621986122496706553, guid: c326de36b922b694da1ed489e4895c96, type: 3}
+  DurationInSecond: 1
+  moveOnPath: 0
+  finishedWalking: 0
+  finishPoint: 0
 --- !u!1001 &6606643371846702339
 PrefabInstance:
   m_ObjectHideFlags: 0

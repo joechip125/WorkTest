@@ -8,12 +8,13 @@ using UnityEngine.EventSystems;
 
 public class PlaceZone : MonoBehaviour, IDropHandler
 {
+    [SerializeField] private bool moveUpOrDown;
     private GameObject _shadowLadderKeep;
     private bool _objectPlaced;
     public Action<Guid, bool> PlaceCallback;
+    private Ladder _aLadder;
     public Guid Guid;
-
-
+    
     private void Awake()
     {
         _shadowLadderKeep = GetComponentInChildren<PreStartObject>().gameObject;
@@ -26,21 +27,34 @@ public class PlaceZone : MonoBehaviour, IDropHandler
         {
             var move = col.GetComponent<AvatarMovement>().shouldMove = false;
         }
-    }
-    
-    
-    
 
-    public Transform ZoneChange(bool comeOrGo)
+        if (col.CompareTag("Placeable"))
+        {
+            _aLadder = col.GetComponent<Ladder>();
+            if (!_objectPlaced)
+            {
+                _shadowLadderKeep.SetActive(true);
+                _aLadder.placePoint = transform.position;
+                _aLadder.validArea = true;
+            }
+            else
+            {
+                _aLadder.validArea = false;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
     {
-        _shadowLadderKeep.SetActive(comeOrGo);
-        _objectPlaced = comeOrGo;
-        PlaceCallback?.Invoke(Guid, comeOrGo);
-        return transform;
+        if (other.CompareTag("Placeable"))
+        {
+            _shadowLadderKeep.SetActive(false);
+            _aLadder.validArea = false;
+        }
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        PlaceCallback?.Invoke(Guid, true);
+       
     }
 }

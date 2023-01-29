@@ -1,35 +1,39 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Interact_Arrow : MonoBehaviour
 {
     private bool _startedMovement;
-    public bool laddersPlaced;
-
     public AvatarMovement moveObject;
-    [SerializeField] private WalkPath path;
+    private List<Ladder> _ladders = new();
     private AudioSource _error;
 
     private void Awake()
     {
         _error = GetComponent<AudioSource>();
-        
     }
 
     private void OnMouseDown()
     {
-        if (!_startedMovement && laddersPlaced)
+        if (_startedMovement) return;
+        if (_ladders.Count < 1)
         {
-            _startedMovement = true;
-            path.moveOnPath = true;
+            _ladders = transform.parent.GetComponentsInChildren<Ladder>().ToList();
         }
-        else if(!_startedMovement && !laddersPlaced)
+
+        if (_ladders.Any(x => !x.HasPlaced))
         {
             _error.Play();
         }
+        else
+        {
+            _startedMovement = true;
+            moveObject.MoveDirection = MoveDirection.Forward;
+            moveObject.shouldMove = true;
+        }
     }
-    
 }
