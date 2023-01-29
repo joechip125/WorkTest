@@ -11,9 +11,8 @@ public class PlaceZone : MonoBehaviour, IDropHandler
     [SerializeField] private bool moveUpOrDown;
     private GameObject _shadowLadderKeep;
     private bool _objectPlaced;
-    public Action<Guid, bool> PlaceCallback;
     private Ladder _aLadder;
-    public Guid Guid;
+
     
     private void Awake()
     {
@@ -57,6 +56,6 @@ public class PlaceZone : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-       
+       Debug.Log("On Drop");
     }
 }

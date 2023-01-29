@@ -11,19 +11,15 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
     [HideInInspector] public Vector3 placePoint;
     [HideInInspector] public bool validArea;
     private Transform _zoneTransform;
-    private CanvasGroup _canvasGroup;
     
-    public bool canPickUp = true;
     private bool _hasPlaced;
     
     public bool HasPlaced => _hasPlaced;
 
     void Start()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();
         _startingPoint = transform.position;
         _startingScale = transform.localScale;
-        canPickUp = true;
     }
     
     public void OnPointerDown(PointerEventData eventData)
@@ -39,7 +35,7 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         if (_hasPlaced) return;
-        if (!canPickUp || !validArea)
+        if (!validArea)
         {
             transform.position = _startingPoint;
             transform.localScale = _startingScale;
@@ -47,11 +43,8 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
         else
         {
             transform.position = placePoint;
-            canPickUp = false;
             _hasPlaced = true;
         }
-        _canvasGroup.blocksRaycasts = true;
-        _canvasGroup.alpha = 1f;
     }
 
     public void OnDrag(PointerEventData eventData)

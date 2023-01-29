@@ -120,8 +120,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodes:
-  - position: {x: -0.17780733, y: -0.8604336, z: 0}
-    direction: {x: -0.17780733, y: -0.8604336, z: -3}
+  - position: {x: -0.56060386, y: -0.46471322, z: 0}
+    direction: {x: -0.56060386, y: -0.46471322, z: -3}
+    up: {x: 0, y: 1, z: 0}
+    scale: {x: 1, y: 1}
+    roll: 0
+  - position: {x: -0.10181832, y: -0.46471322, z: -3}
+    direction: {x: -0.10181832, y: -0.46471322, z: -6}
     up: {x: 0, y: 1, z: 0}
     scale: {x: 1, y: 1}
     roll: 0
@@ -132,8 +137,23 @@ MonoBehaviour:
     roll: 0
   curves:
   - n1:
-      position: {x: -0.17780733, y: -0.8604336, z: 0}
-      direction: {x: -0.17780733, y: -0.8604336, z: -3}
+      position: {x: -0.56060386, y: -0.46471322, z: 0}
+      direction: {x: -0.56060386, y: -0.46471322, z: -3}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    n2:
+      position: {x: -0.10181832, y: -0.46471322, z: -3}
+      direction: {x: -0.10181832, y: -0.46471322, z: -6}
+      up: {x: 0, y: 1, z: 0}
+      scale: {x: 1, y: 1}
+      roll: 0
+    Changed:
+      m_PersistentCalls:
+        m_Calls: []
+  - n1:
+      position: {x: -0.10181832, y: -0.46471322, z: -3}
+      direction: {x: -0.10181832, y: -0.46471322, z: -6}
       up: {x: 0, y: 1, z: 0}
       scale: {x: 1, y: 1}
       roll: 0
@@ -146,7 +166,7 @@ MonoBehaviour:
     Changed:
       m_PersistentCalls:
         m_Calls: []
-  Length: 5.2560434
+  Length: 9.050243
   isLoop: 0
   CurveChanged:
     m_PersistentCalls:
@@ -163,11 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ec9fb8aa77f1e408bbc812ffd975d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Follower: {fileID: 621986122496706553, guid: c326de36b922b694da1ed489e4895c96, type: 3}
-  DurationInSecond: 1
+  durationInSecond: 0
   moveOnPath: 0
   finishedWalking: 0
-  finishPoint: 0
 --- !u!1001 &6606643371846702339
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -21,8 +21,8 @@ public class Interact_Arrow : MonoBehaviour
     {
         if (_startedMovement) return;
         
-        if (_ladders.Count < 1)
-            _ladders = transform.parent.GetComponentsInChildren<Ladder>().ToList();
+        if (_ladders.Count < 1) _ladders = transform.parent
+                .GetComponentsInChildren<Ladder>().ToList();
         
         if (_ladders.Any(x => !x.HasPlaced)) _error.Play();
         
