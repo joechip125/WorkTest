@@ -14,13 +14,7 @@ public class Path : MonoBehaviour
     {
         _currentPoint = 0;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void UpdateNodes()
     {
         if (numberNodes > points.Count)
@@ -41,6 +35,8 @@ public class Path : MonoBehaviour
     
     private void OnDrawGizmos()
     {
+        if (Application.isPlaying) return;
+        
         if (points.Count != numberNodes)
         {
             UpdateNodes();
@@ -67,10 +63,11 @@ public class Path : MonoBehaviour
             return false;
         }
 
+        Debug.Log(_currentPoint);
+
         var parent = transform;
         thePoint = points[_currentPoint].transform.localPosition + transform.position;
- 
-      
+        
         _currentPoint++;
         return true;
     }

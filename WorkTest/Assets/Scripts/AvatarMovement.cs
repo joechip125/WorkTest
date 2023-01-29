@@ -93,15 +93,15 @@ public class AvatarMovement : MonoBehaviour
             transform.position += _currentDirection * (Time.deltaTime * moveSpeed);
         }
 
-        if (_shouldMove && _moveDirection == MoveDirection.ToPoint && !_arrivedAtPoint)
+        if (_shouldMove && _moveDirection == MoveDirection.ToPoint)
         {
-            transform.position = Vector3.MoveTowards(startPoint, movePoint, _lerpTime);
-            _lerpTime += Time.deltaTime * moveSpeed;
-
-            if (!(_lerpTime >= 0.99f)) return;
+            var step =  moveSpeed * Time.deltaTime; 
+            transform.position = Vector3.MoveTowards(transform.position, movePoint, step);
             
-            _arrivedAtPoint = true;
-            FinishedMoving?.Invoke();
+            if (Vector3.Distance(transform.position, movePoint) < 0.001f)
+            {
+                MoveDirection = MoveDirection.None;
+            }
         }
         
         if (_shouldMove && _moveDirection == MoveDirection.ToPoints)
