@@ -17,7 +17,7 @@ public enum MoveDirection
 
 public class AvatarMovement : MonoBehaviour
 {
-    public bool shouldMove;
+    private bool _shouldMove;
     public float moveSpeed = 3.0f;
     public Vector3 movePoint;
     public Vector3 startPoint;
@@ -46,7 +46,7 @@ public class AvatarMovement : MonoBehaviour
     {
         if (_moveDirection == MoveDirection.None)
         {
-            shouldMove = false;
+            _shouldMove = false;
             return;
         }
         switch (_moveDirection)
@@ -65,26 +65,25 @@ public class AvatarMovement : MonoBehaviour
                 break;
         }
 
-        shouldMove = true;
+        _shouldMove = true;
     }
     
-    void Update()
+    private void Update()
     {
-        if (shouldMove && _moveDirection != MoveDirection.ToPoint)
+        if (_shouldMove && _moveDirection != MoveDirection.ToPoint)
         {
             transform.position += _currentDirection * (Time.deltaTime * moveSpeed);
         }
 
-        if (shouldMove && _moveDirection == MoveDirection.ToPoint && !_arrivedAtPoint)
+        if (_shouldMove && _moveDirection == MoveDirection.ToPoint && !_arrivedAtPoint)
         {
-            transform.position = Vector3.Lerp(startPoint, movePoint, _lerpTime);
+            transform.position = Vector3.MoveTowards(startPoint, movePoint, _lerpTime);
             _lerpTime += Time.deltaTime * moveSpeed;
 
-            if (_lerpTime >= 0.99f)
-            {
-                _arrivedAtPoint = true;
-                FinishedMoving?.Invoke();
-            }
+            if (!(_lerpTime >= 0.99f)) return;
+            
+            _arrivedAtPoint = true;
+            FinishedMoving?.Invoke();
         }
     }
 }

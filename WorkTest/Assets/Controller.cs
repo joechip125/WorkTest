@@ -28,14 +28,12 @@ public class Controller : MonoBehaviour
         OnMove -= MoveGround;
     }
 
-    public void MoveGround()
+    private void MoveGround()
     {
-        for (int i = 0; i < moveObjects.Count; i++)
+        foreach (var movement in moveObjects)
         {
-            var temp = moveObjects[i];
-            temp.movePoint = temp.startPoint - new Vector3(12.5f, 0, 0);
-            temp.MoveDirection = MoveDirection.ToPoint;
-            temp.shouldMove = true;
+            movement.movePoint = movement.startPoint - new Vector3(12.5f, 0, 0);
+            movement.MoveDirection = MoveDirection.ToPoint;
         }
     }
     

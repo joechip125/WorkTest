@@ -10,12 +10,10 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
     private Vector3 _startingScale;
     [HideInInspector] public Vector3 placePoint;
     [HideInInspector] public bool validArea;
-    private Action _theCallback;
     private Transform _zoneTransform;
-    private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
     
-    public bool canPlace = true;
+    public bool canPickUp = true;
     private bool _hasPlaced;
     
     public bool HasPlaced => _hasPlaced;
@@ -23,10 +21,9 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
     void Start()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
-        _rectTransform = GetComponent<RectTransform>();
         _startingPoint = transform.position;
         _startingScale = transform.localScale;
-        canPlace = true;
+        canPickUp = true;
     }
     
     public void OnPointerDown(PointerEventData eventData)
@@ -39,26 +36,10 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
        
     }
     
-    public void ReturnToSender()
-    {
-        transform.position = _startingPoint;
-        transform.localScale = _startingScale;
-    }
-
-    public void PlaceTheLadder(Vector3 placePos)
-    {
-        transform.position = placePos;
-        _theCallback?.Invoke();
-        canPlace = false;
-        
-        _canvasGroup.blocksRaycasts = true;
-        _canvasGroup.alpha = 1f;
-    }
-    
     public void OnEndDrag(PointerEventData eventData)
     {
         if (_hasPlaced) return;
-        if (!canPlace || !validArea)
+        if (!canPickUp || !validArea)
         {
             transform.position = _startingPoint;
             transform.localScale = _startingScale;
@@ -66,8 +47,7 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
         else
         {
             transform.position = placePoint;
-            _theCallback?.Invoke();
-            canPlace = false;
+            canPickUp = false;
             _hasPlaced = true;
         }
         _canvasGroup.blocksRaycasts = true;
@@ -76,9 +56,8 @@ public class Ladder : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEn
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (!canPlace) return;
+        if (_hasPlaced) return;
         
-        _rectTransform.anchoredPosition = eventData.delta;
         var aPos = Camera.main.ScreenPointToRay(Input.mousePosition).origin;
         var placePos = new Vector3(aPos.x, aPos.y, -0.11f);
         transform.position = placePos;

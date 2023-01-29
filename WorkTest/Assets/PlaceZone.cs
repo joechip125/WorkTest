@@ -25,7 +25,7 @@ public class PlaceZone : MonoBehaviour, IDropHandler
     {
         if (col.CompareTag("Avatar"))
         {
-            var move = col.GetComponent<AvatarMovement>().shouldMove = false;
+            col.GetComponent<AvatarMovement>().MoveDirection = MoveDirection.None;
         }
 
         if (col.CompareTag("Placeable"))
@@ -36,6 +36,7 @@ public class PlaceZone : MonoBehaviour, IDropHandler
                 _shadowLadderKeep.SetActive(true);
                 _aLadder.placePoint = transform.position;
                 _aLadder.validArea = true;
+                _objectPlaced = true;
             }
             else
             {
@@ -50,6 +51,7 @@ public class PlaceZone : MonoBehaviour, IDropHandler
         {
             _shadowLadderKeep.SetActive(false);
             _aLadder.validArea = false;
+            _objectPlaced = false;
         }
     }
 

@@ -20,20 +20,16 @@ public class Interact_Arrow : MonoBehaviour
     private void OnMouseDown()
     {
         if (_startedMovement) return;
+        
         if (_ladders.Count < 1)
-        {
             _ladders = transform.parent.GetComponentsInChildren<Ladder>().ToList();
-        }
-
-        if (_ladders.Any(x => !x.HasPlaced))
-        {
-            _error.Play();
-        }
+        
+        if (_ladders.Any(x => !x.HasPlaced)) _error.Play();
+        
         else
         {
             _startedMovement = true;
             moveObject.MoveDirection = MoveDirection.Forward;
-            moveObject.shouldMove = true;
         }
     }
 }
