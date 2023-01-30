@@ -8,6 +8,7 @@ public class ArrowUI : MonoBehaviour, IPointerClickHandler
 {
     private AudioSource _error;
     private List<PlaceZoneUI> _placeZones = new();
+    [SerializeField] private AvatarMovement avatarMovement;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class ArrowUI : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            
+            avatarMovement.MoveDirection = MoveDirection.ToPoints;
         }
     }
 }

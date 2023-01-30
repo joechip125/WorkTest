@@ -46,9 +46,6 @@ public class AvatarMovement : MonoBehaviour
     {
         startPoint = transform.position;
         _walkPoints = FindObjectOfType<Path>();
-        _currentPoint = 0;
-        _maxPoint = _walkPoints.NumberPoints;
-        NextPoint();
     }
 
     private void NextPoint()
@@ -73,7 +70,8 @@ public class AvatarMovement : MonoBehaviour
         }
         else
         {
-            
+            movePoint = _walkPoints.GetPointAtIndex(_currentPoint);
+            _currentPoint++;
         }
     }
     
@@ -93,7 +91,17 @@ public class AvatarMovement : MonoBehaviour
             case MoveDirection.Down:
                 _currentDirection = -transform.up;
                 break;
+            case MoveDirection.ToPoints:
+                InitWalk();
+                break;
         }
+    }
+
+    private void InitWalk()
+    {
+        _currentPoint = 0;
+        _maxPoint = _walkPoints.NumberPoints;
+        GetAnotherPoint();
     }
     
     private void Update()

@@ -67,7 +67,10 @@ public class Path : MonoBehaviour
 
     public Vector3 GetPointAtIndex(int index)
     {
-        return points[index].transform.localPosition;
+        var local =points[index].transform.localPosition;
+        var something = transform.position + local;
+        
+        return something;
     }
 
     public bool GetNextPoint(out Vector3 thePoint)
