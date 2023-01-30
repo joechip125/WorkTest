@@ -20,10 +20,6 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
         _shadowImage = GetComponentInChildren<Image>();
         _sC = _shadowImage.color;
        _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0);
-       if (flipImage)
-       {
-           
-       }
     }
 
     public void OnDrop(PointerEventData eventData)

@@ -10,20 +10,15 @@ public class Path : MonoBehaviour
     [SerializeField] private new GameObject transformObject;
     [SerializeField, Range(0, 12)] private int numberNodes;
     [SerializeField] private List<GameObject> points = new();
-    [HideInInspector]private int _currentPoint;
-
+    
     public int NumberPoints => points.Count;
 
     void Start()
     {
-        _currentPoint = 0;
-
-       points = points
+        points = points
            .OrderBy(x => 
                Vector3.Distance(transform.position, x.transform.position)).ToList();
     }
-    
-    
     
     private void UpdateNodes()
     {
@@ -71,20 +66,5 @@ public class Path : MonoBehaviour
         var something = transform.position + local;
         
         return something;
-    }
-
-    public bool GetNextPoint(out Vector3 thePoint)
-    {
-        thePoint = transform.position;
-        if (_currentPoint > points.Count - 1)
-        {
-            return false;
-        }
-
-        var parent = transform;
-        thePoint = points[_currentPoint].transform.localPosition + transform.position;
-        
-        _currentPoint++;
-        return true;
     }
 }
