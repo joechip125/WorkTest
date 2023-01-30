@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,8 +13,7 @@ public class ControllerUI : MonoBehaviour
     [SerializeField] int numberLevelChanges;
     [SerializeField] private DisplayText displayText;
     private int _changedLevels;
-
-
+    
     private void Start()
     {
         player.ChangeLevels += MoveTheLevels;
@@ -37,14 +38,13 @@ public class ControllerUI : MonoBehaviour
 
     private void MoveTheLevels()
     {
-
         if (_changedLevels >= numberLevelChanges)
         {
             EndLevel();
             return;
         }
         
-        player.transform.parent = moveLevels[1].transform;
+        player.transform.parent = moveLevels[_changedLevels + 1].transform;
 
         foreach (var l in moveLevels)
         {

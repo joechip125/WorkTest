@@ -18,10 +18,8 @@ public enum MoveDirection
 
 public class AvatarMovement : MonoBehaviour
 {
-   // private bool _shouldMove;
     public float moveSpeed = 3.0f;
     public Vector3 movePoint;
-    public Vector3 startPoint;
     private bool _arrivedAtPoint;
     private float _lerpTime = 0;
     public Action ChangeLevels;
@@ -44,22 +42,7 @@ public class AvatarMovement : MonoBehaviour
 
     private void Awake()
     {
-        startPoint = transform.position;
         _walkPoints = FindObjectOfType<Path>();
-    }
-
-    private void NextPoint()
-    {
-        startPoint = transform.position;
-        if (_walkPoints.GetNextPoint(out var point))
-        {
-            movePoint = point;
-            _lerpTime = 0;
-        }
-        else
-        {
-            MoveDirection = MoveDirection.None;
-        }
     }
 
     private void GetAnotherPoint()
