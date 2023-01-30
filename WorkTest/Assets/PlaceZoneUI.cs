@@ -40,6 +40,7 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("pointer enter");
         if (eventData.pointerDrag)
         {
             _ladderUI = eventData.pointerDrag.GetComponent<LadderUI>();

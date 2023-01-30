@@ -24,7 +24,7 @@ public class AvatarMovement : MonoBehaviour
     public Vector3 startPoint;
     private bool _arrivedAtPoint;
     private float _lerpTime = 0;
-    public Action FinishedMoving;
+    public Action ChangeLevels;
     private Path _walkPoints;
 
     private int _currentPoint;
@@ -67,6 +67,7 @@ public class AvatarMovement : MonoBehaviour
         if (_currentPoint >= _maxPoint - 1)
         {
             MoveDirection = MoveDirection.None;
+            ChangeLevels?.Invoke();
         }
         else
         {
@@ -99,6 +100,7 @@ public class AvatarMovement : MonoBehaviour
 
     private void InitWalk()
     {
+        _walkPoints = transform.parent.GetComponentInChildren<Path>();
         _currentPoint = 0;
         _maxPoint = _walkPoints.NumberPoints;
         GetAnotherPoint();

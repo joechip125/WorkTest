@@ -10,27 +10,36 @@ public class LadderUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private CanvasGroup _canvasGroup;
     private Vector3 _startPos;
     private bool _ladderHeld;
+    [SerializeField] public bool flipLadder;
 
-    public bool ladderOnDropArea;
+    [HideInInspector]public bool ladderOnDropArea;
     public bool LadderHeld => _ladderHeld;
 
     private void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvasGroup = GetComponent<CanvasGroup>();
-        _startPos = _rectTransform.position;
+        _startPos = _rectTransform.localPosition;
     }
 
     public void ReturnToSender()
     {
         _rectTransform.localScale = new Vector3(1.0f,1.0f,1.0f);
-        _rectTransform.position = _startPos;
+        if (flipLadder)
+        {
+            _rectTransform.Rotate(new Vector3(0,1,0), -180f);
+        }
+        _rectTransform.localPosition = _startPos;
         _canvasGroup.blocksRaycasts = true;
     }
     
     public void OnPointerDown(PointerEventData eventData)
     {
         _rectTransform.localScale = new Vector3(2.5f,2.5f,2.5f);
+        if (flipLadder)
+        {
+            _rectTransform.Rotate(new Vector3(0,1,0), 180f);
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)

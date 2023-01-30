@@ -13,7 +13,7 @@ public class ArrowUI : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         _error = GetComponent<AudioSource>();
-        _placeZones = FindObjectsOfType<PlaceZoneUI>().ToList();
+        _placeZones = transform.parent.GetComponentsInChildren<PlaceZoneUI>().ToList();
     }
     
     public void OnPointerClick(PointerEventData eventData)
