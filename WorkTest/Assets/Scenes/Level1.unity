@@ -160,7 +160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102792591}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 237, y: 412.25726, z: -1.2388816}
+  m_LocalPosition: {x: -1031, y: 412.25726, z: -1.2388816}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -411,6 +411,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1082040428810783643, guid: f6cf38f74c9a0ae429ffd4d7daa351b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5076242658403117423, guid: f6cf38f74c9a0ae429ffd4d7daa351b2, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -502,6 +506,14 @@ PrefabInstance:
     - target: {fileID: 6957145795808402866, guid: f6cf38f74c9a0ae429ffd4d7daa351b2, type: 3}
       propertyPath: m_Name
       value: Canvas2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164002346767680020, guid: f6cf38f74c9a0ae429ffd4d7daa351b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8844301095622338708, guid: f6cf38f74c9a0ae429ffd4d7daa351b2, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6cf38f74c9a0ae429ffd4d7daa351b2, type: 3}

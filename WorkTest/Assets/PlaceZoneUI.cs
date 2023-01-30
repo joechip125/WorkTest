@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField] private bool flipImage;
     private bool _canPlace = true;
     private LadderUI _ladderUI;
     private Image _shadowImage;
@@ -19,6 +20,10 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
         _shadowImage = GetComponentInChildren<Image>();
         _sC = _shadowImage.color;
        _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0);
+       if (flipImage)
+       {
+           
+       }
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -40,7 +45,6 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("pointer enter");
         if (eventData.pointerDrag)
         {
             _ladderUI = eventData.pointerDrag.GetComponent<LadderUI>();
