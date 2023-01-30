@@ -18,7 +18,7 @@ public enum MoveDirection
 
 public class AvatarMovement : MonoBehaviour
 {
-    private bool _shouldMove;
+   // private bool _shouldMove;
     public float moveSpeed = 3.0f;
     public Vector3 movePoint;
     public Vector3 startPoint;
@@ -26,6 +26,9 @@ public class AvatarMovement : MonoBehaviour
     private float _lerpTime = 0;
     public Action FinishedMoving;
     private Path _walkPoints;
+
+    private int _currentPoint;
+    private int _maxPoint;
 
     public MoveDirection MoveDirection
     {
@@ -43,6 +46,8 @@ public class AvatarMovement : MonoBehaviour
     {
         startPoint = transform.position;
         _walkPoints = FindObjectOfType<Path>();
+        _currentPoint = 0;
+        _maxPoint = _walkPoints.NumberPoints;
         NextPoint();
     }
 
@@ -59,14 +64,21 @@ public class AvatarMovement : MonoBehaviour
             MoveDirection = MoveDirection.None;
         }
     }
+
+    private void GetAnotherPoint()
+    {
+        if (_currentPoint >= _maxPoint - 1)
+        {
+            MoveDirection = MoveDirection.None;
+        }
+        else
+        {
+            
+        }
+    }
     
     private void UpdateDirection()
     {
-        if (_moveDirection == MoveDirection.None)
-        {
-            _shouldMove = false;
-            return;
-        }
         switch (_moveDirection)
         {
             case MoveDirection.Forward:
@@ -82,18 +94,16 @@ public class AvatarMovement : MonoBehaviour
                 _currentDirection = -transform.up;
                 break;
         }
-
-        _shouldMove = true;
     }
     
     private void Update()
     {
-        if (_shouldMove && _moveDirection != MoveDirection.ToPoint)
+        if (_moveDirection != MoveDirection.ToPoint)
         {
             transform.position += _currentDirection * (Time.deltaTime * moveSpeed);
         }
 
-        if (_shouldMove && _moveDirection == MoveDirection.ToPoint)
+        if (_moveDirection == MoveDirection.ToPoint)
         {
             var step =  moveSpeed * Time.deltaTime; 
             transform.position = Vector3.MoveTowards(transform.position, movePoint, step);
@@ -104,14 +114,14 @@ public class AvatarMovement : MonoBehaviour
             }
         }
         
-        if (_shouldMove && _moveDirection == MoveDirection.ToPoints)
+        if (_moveDirection == MoveDirection.ToPoints)
         {
             var step =  moveSpeed * Time.deltaTime; 
             transform.position = Vector3.MoveTowards(transform.position, movePoint, step);
             
             if (Vector3.Distance(transform.position, movePoint) < 0.001f)
             {
-                NextPoint();
+                GetAnotherPoint();
             }
         }
     }

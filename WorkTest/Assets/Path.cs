@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,10 +11,19 @@ public class Path : MonoBehaviour
     [SerializeField, Range(0, 12)] private int numberNodes;
     [SerializeField] private List<GameObject> points = new();
     [HideInInspector]private int _currentPoint;
+
+    public int NumberPoints => points.Count;
+
     void Start()
     {
         _currentPoint = 0;
+
+       points = points
+           .OrderBy(x => 
+               Vector3.Distance(transform.position, x.transform.position)).ToList();
     }
+    
+    
     
     private void UpdateNodes()
     {
@@ -45,7 +55,7 @@ public class Path : MonoBehaviour
         for (int i = 0; i < points.Count; i++)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawSphere(points[i].transform.position, 0.1f);
+            Gizmos.DrawSphere(points[i].transform.position, 10f);
 
             if (i > 0 )
             {
@@ -53,6 +63,11 @@ public class Path : MonoBehaviour
                 Gizmos.DrawLine(points[i - 1].transform.position, points[i].transform.position);
             }
         }
+    }
+
+    public Vector3 GetPointAtIndex(int index)
+    {
+        return points[index].transform.localPosition;
     }
 
     public bool GetNextPoint(out Vector3 thePoint)
