@@ -11,8 +11,8 @@ public class LadderUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private Vector3 _startPos;
     private bool _ladderHeld;
     [SerializeField] public bool flipLadder;
-
     [HideInInspector]public bool ladderOnDropArea;
+    
     public bool LadderHeld => _ladderHeld;
 
     private void Awake()

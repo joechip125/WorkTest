@@ -7,12 +7,10 @@ using UnityEngine.UI;
 
 public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private bool flipImage;
     private bool _canPlace = true;
     private LadderUI _ladderUI;
     private Image _shadowImage;
     private Color _sC;
-
     public bool CanPlace => _canPlace;
 
     private void Awake()
@@ -46,13 +44,12 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
             _ladderUI = eventData.pointerDrag.GetComponent<LadderUI>();
             _ladderUI.ladderOnDropArea = true;
         }
+
+        if (!_ladderUI) return;
         
-        if (_ladderUI)
+        if (_ladderUI.LadderHeld && _canPlace)
         {
-            if (_ladderUI.LadderHeld && _canPlace)
-            {
-                _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0.5f);
-            }
+            _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0.5f);
         }
     }
 
@@ -60,10 +57,9 @@ public class PlaceZoneUI : MonoBehaviour, IDropHandler, IPointerEnterHandler, IP
     {
         _shadowImage.color = new Color(_sC.r, _sC.g, _sC.b, 0);
 
-        if (_ladderUI)
-        {
-            _ladderUI.ladderOnDropArea = false;
-            _ladderUI = null;
-        }
+        if (!_ladderUI) return;
+        
+        _ladderUI.ladderOnDropArea = false;
+        _ladderUI = null;
     }
 }
