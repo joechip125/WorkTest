@@ -23,14 +23,14 @@ public class LadderUI : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
 
     public void ReturnToSender()
     {
-        _rectTransform.localScale = new Vector3(0.6f,0.6f,0.6f);
+        _rectTransform.localScale = new Vector3(1.0f,1.0f,1.0f);
         _rectTransform.position = _startPos;
         _canvasGroup.blocksRaycasts = true;
     }
     
     public void OnPointerDown(PointerEventData eventData)
     {
-        _rectTransform.localScale = new Vector3(2.8f,2.8f,2.8f);
+        _rectTransform.localScale = new Vector3(2.5f,2.5f,2.5f);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
