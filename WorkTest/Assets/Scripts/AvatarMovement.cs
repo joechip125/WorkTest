@@ -21,7 +21,6 @@ public class AvatarMovement : MonoBehaviour
     public float moveSpeed = 3.0f;
     public Vector3 movePoint;
     private bool _arrivedAtPoint;
-    private float _lerpTime = 0;
     public Action ChangeLevels;
     private Path _walkPoints;
 
@@ -88,7 +87,7 @@ public class AvatarMovement : MonoBehaviour
         _maxPoint = _walkPoints.NumberPoints;
         GetAnotherPoint();
     }
-    
+
     private void Update()
     {
         if (_moveDirection != MoveDirection.ToPoint)
