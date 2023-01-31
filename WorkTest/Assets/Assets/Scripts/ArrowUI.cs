@@ -9,6 +9,7 @@ public class ArrowUI : MonoBehaviour, IPointerClickHandler
     private AudioSource _error;
     private List<PlaceZoneUI> _placeZones = new();
     [SerializeField] private AvatarMovement avatarMovement;
+    private bool _startedWalk;
 
     void Start()
     {
@@ -18,6 +19,7 @@ public class ArrowUI : MonoBehaviour, IPointerClickHandler
     
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (_startedWalk) return;
         if (_placeZones.Any(x => x.CanPlace))
         {
             _error.Play();
@@ -25,6 +27,7 @@ public class ArrowUI : MonoBehaviour, IPointerClickHandler
         else
         {
             avatarMovement.MoveDirection = MoveDirection.ToPoints;
+            _startedWalk = true;
         }
     }
 }
