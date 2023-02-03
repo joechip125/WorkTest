@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 public class ControllerUI : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class ControllerUI : MonoBehaviour
     [SerializeField] int numberLevelChanges;
     [SerializeField] private DisplayText displayText;
     private int _changedLevels;
+    [SerializeField] private Timer theTimer;
     
     private void Start()
     {
@@ -26,7 +28,10 @@ public class ControllerUI : MonoBehaviour
 
     private void EndLevel()
     {
+        var finalTime = Mathf.Round((theTimer.TheTime) * 100f) / 100f;
+        PlayerPrefs.SetFloat("FinalTime", finalTime);
         displayText.OnLevelComplete();
+        
         StartCoroutine(DelayEnd());
     }
 
